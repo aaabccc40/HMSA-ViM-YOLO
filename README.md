@@ -2,14 +2,14 @@
 
 ## 文件
 
-- script/vmambapet_experiment.py：模型、数据读取、训练、验证、测试、鲁棒性评估与结果可视化完整程序。
+- script/HMSA-ViM-YOLO.py：模型、数据读取、训练、验证、测试、鲁棒性评估与结果可视化完整程序。
 
 ## 数据目录
 
-数据根目录需按如下结构组织（以 /data/processed_dataset_VMambaPet 为例）：
+数据根目录需按如下结构组织（以 /data/processed_dataset_HMSA-ViM-YOLO 为例）：
 
 ```bash
-processed_dataset_VMambaPet/
+processed_dataset_HMSA-ViM-YOLO/
   pdt_yolo/                       # PDT 数据集（YOLO 格式）
     images/
       train/
@@ -40,8 +40,8 @@ test,rgb_yolo/c.png,ms_npz/c.npz,labels/c.txt
 ## 安装
 
 ```bash
-conda create -n vmambapet python=3.10 -y
-conda activate vmambapet
+conda create -n HMSA-ViM-YOLO python=3.10 -y
+conda activate HMSA-ViM-YOLO
 
 pip install torch torchvision numpy pillow
 pip install thop
@@ -67,10 +67,10 @@ disease_only：仅枯萎株作为前景类，健康株作为背景负样本。
 
 单数据集训练（PDT）：：
 ```bash
-python scripts/vmambapet_experiment.py train \
+python scripts/HMSA-ViM-YOLO.py train \
   --dataset pdt \
-  --data-root /data/processed_dataset_VMambaPet \
-  --output-dir runs_vmambapet \
+  --data-root /data/processed_dataset_HMSA-ViM-YOLO \
+  --output-dir runs_HMSA-ViM-YOLO \
   --epochs 80 \
   --lr 1e-4 \
   --batch-size 4 \
@@ -84,10 +84,10 @@ python scripts/vmambapet_experiment.py train \
 
 多数据集联合训练（PDT + 香蕉多光谱，数据源均衡采样）：
 ```bash
-python scripts/vmambapet_experiment.py train \
+python scripts/HMSA-ViM-YOLO.py train \
   --dataset pdt banana_ms \
-  --data-root /data/processed_dataset_VMambaPet \
-  --output-dir runs_vmambapet \
+  --data-root /data/processed_dataset_HMSA-ViM-YOLO \
+  --output-dir runs_HMSA-ViM-YOLO \
   --epochs 80 \
   --lr 1e-4 \
   --batch-size 4 \
@@ -108,15 +108,15 @@ runs_vmambapet/<dataset_key>/<timestamp>/
   train_log.jsonl
   <timestamp>_epochXXX_map50_XXXX_val.pt
 ```
-若指定 --ablation 且不是 full，目录改为 runs_vmambapet/<dataset_key>/<ablation>/<timestamp>/。
+若指定 --ablation 且不是 full，目录改为 runs_HMSA-ViM-YOLO/<dataset_key>/<ablation>/<timestamp>/。
 
 ## 测试
 
 ```bash
-python scripts/vmambapet_experiment.py test \
+python scripts/HMSA-ViM-YOLO.py test \
   --dataset pdt \
-  --data-root /data/processed_dataset_VMambaPet \
-  --weights runs_vmambapet/pdt/20260629-172032/best.pt \
+  --data-root /data/processed_dataset_HMSA-ViM-YOLO \
+  --weights runs_HMSA-ViM-YOLO/pdt/20260629-172032/best.pt \
   --ablation full \
   --split test \
   --save-result-images
@@ -127,10 +127,10 @@ python scripts/vmambapet_experiment.py test \
 单图：
 
 ```bash
-python scripts/vmambapet_experiment.py robust \
+python scripts/HMSA-ViM-YOLO_experiment.py robust \
   --dataset pdt \
-  --data-root /data/processed_dataset_VMambaPet \
-  --weights runs_vmambapet/pdt/full/20260629-172032/best.pt \
+  --data-root /data/processed_dataset_HMSA-ViM-YOLO \
+  --weights runs_HMSA-ViM-YOLO/pdt/full/20260629-172032/best.pt \
   --ablation full \
   --split test
 ```
