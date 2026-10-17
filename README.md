@@ -154,3 +154,4 @@ python scripts/HMSA-ViM-YOLO_experiment.py robust \
 - torchvision Faster R-CNN：https://pytorch.org/vision/stable/models/faster_rcnn.html
 - Mamba 官方仓库：https://github.com/state-spaces/mamba
 - thop（FLOPs 统计）：https://github.com/Lyken17/pytorch-OpCounter
+- PDT数据集：https://github.com/RuiXing123/PDT_CWC_YOLO-DP
