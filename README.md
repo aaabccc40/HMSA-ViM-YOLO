@@ -52,11 +52,12 @@ pip install thop
 ## 数据集组合
 --dataset 可选择一个或多个，名称固定为 pdt、banana_rgb、banana_ms：
 
-组合	                    输入通道	    前景类别
---dataset pdt	               3	      pdt_unhealthy
---dataset banana_rgb	       3	      banana_healthy_plant, banana_fusarium_wilt_plant（可切换 disease_only）
---dataset banana_ms	         9	       同上
---dataset pdt banana_ms	     9	       上述类别合并
+| 组合 | 输入通道 | 前景类别 |
+| --- | ---: | --- |
+| `--dataset pdt` | 3 | `pdt_unhealthy` |
+| `--dataset banana_rgb` | 3 | `banana_healthy_plant`, `banana_fusarium_wilt_plant`（可切换 `disease_only`） |
+| `--dataset banana_ms` | 9 | 同上 |
+| `--dataset pdt banana_ms` | 9 | 上述类别合并 |
 
 香蕉标签策略由 --banana-label-policy {two_class, disease_only} 控制：
 two_class：健康株和枯萎株都作为前景类；
@@ -136,16 +137,16 @@ python scripts/vmambapet_experiment.py robust \
 
 ## 消融实验
 可用消融方案：
-
-名称	          说明
-full	          完整模型（stress prior + directional scan + P2）
-baseline	      去掉 stress、directional 与 P2
-no_stress	      去掉光谱先验
-no_directional	去掉多方向扫描
-no_p2	          去掉 P2 特征层
-no_aug	        保留模块但关闭训练增强
-stress_only	    只保留光谱先验
-directional_only	只保留多方向扫描
+| 名称 | 说明 |
+| --- | --- |
+| `full` | 完整模型（stress prior + directional scan + P2） |
+| `baseline` | 去掉 stress、directional 与 P2 |
+| `no_stress` | 去掉光谱先验 |
+| `no_directional` | 去掉多方向扫描 |
+| `no_p2` | 去掉 P2 特征层 |
+| `no_aug` | 保留模块但关闭训练增强 |
+| `stress_only` | 只保留光谱先验 |
+| `directional_only` | 只保留多方向扫描 |
 替换"--ablation full"以使用
 
 ## 参考资料
