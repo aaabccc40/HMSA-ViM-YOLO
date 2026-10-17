@@ -1,11 +1,4 @@
-"""VMambaPet detection experiments.
-
-用法示例：
-    python scripts/vmambapet_experiment.py train --dataset pdt --data-root /data/processed_dataset_VMambaPet
-    python scripts/vmambapet_experiment.py train --dataset banana_ms --data-root /data/processed_dataset_VMambaPet
-    python scripts/vmambapet_experiment.py test --dataset pdt --data-root /data/processed_dataset_VMambaPet --weights runs/pdt/best.pt
-    python scripts/vmambapet_experiment.py robust --dataset pdt --data-root /home/lenovo/datasets/processed_dataset_VMambaPet --weights /home/lenovo/PycharmProject/vmambapet/runs_vmambapet/pdt/20260625-215748-seed2026/best.pt
-"""
+"""HMSA-ViM-YOLO detection experiments."""
 
 from __future__ import annotations
 
