@@ -2,7 +2,7 @@
 
 ## 文件
 
-- scripts/vmambapet_experiment.py：模型、数据读取、训练、验证、测试、鲁棒性评估与结果可视化完整程序。
+- script/vmambapet_experiment.py：模型、数据读取、训练、验证、测试、鲁棒性评估与结果可视化完整程序。
 
 ## 数据目录
 
