@@ -310,8 +310,8 @@ def get_ablation_spec(name: str) -> AblationSpec:
 def experiment_root(output_dir: str, spec: ExperimentSpec, ablation: AblationSpec) -> Path:
     """生成实验输出根目录。
 
-    完整模型不是消融实验，直接放在 runs_vmambapet/<数据集组合> 下；具体消融
-    方案放在 runs_vmambapet/<数据集组合>/<消融名> 下。
+    完整模型不是消融实验，直接放在 runs_HMSA-ViM-YOLO/<数据集组合> 下；具体消融
+    方案放在 runs_HMSA-ViM-YOLO/<数据集组合>/<消融名> 下。
     """
     root = Path(output_dir) / spec.dataset_key
     if ablation.name != "full":
@@ -324,7 +324,7 @@ def _infer_ablation_from_weights(weights_path: str) -> str:
     if ablation not in ABLATION_SPECS:
         raise ValueError(
             f"从权重路径自动推断的消融 '{ablation}' 不在可选列表中。"
-            f"请确认目录结构为 runs_vmambapet/<dataset>/<ablation>/<timestamp>/best.pt，"
+            f"请确认目录结构为 runs_HMSA-ViM-YOLO/<dataset>/<ablation>/<timestamp>/best.pt，"
             f"或手动指定 --ablation。可选值：{sorted(ABLATION_SPECS)}"
         )
     return ablation
@@ -1547,7 +1547,7 @@ def prf_at_iou(preds, gts, num_classes: int, iou_thr: float, score_thr: float):
 
 
 def parse_args():
-    parser = argparse.ArgumentParser(description="VMambaPet detection experiments")
+    parser = argparse.ArgumentParser(description="HMSA-ViM-YOLO detection experiments")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     def add_common(p):
@@ -1560,7 +1560,7 @@ def parse_args():
             help="可选择一个、两个或三个数据集",
         )
         p.add_argument("--data-root", type=str, required=True)
-        p.add_argument("--output-dir", type=str, default="runs_vmambapet")
+        p.add_argument("--output-dir", type=str, default="runs_HMSA-ViM-YOLO")
         p.add_argument("--device", type=str, default="cuda:0")
         p.add_argument("--batch-size", type=int, default=4)
         p.add_argument("--workers", type=int, default=4)
@@ -1665,7 +1665,7 @@ def parse_args():
     p_test.add_argument(
         "--test-result-root",
         type=str,
-        default="/home/lenovo/datasets/processed_dataset_VMambaPet/test_result",
+        default="/home/lenovo/datasets/processed_dataset_HMSA-ViM-YOLO/test_result",
         help="测试结果 PNG 保存根目录",
     )
     p_test.add_argument("--vis-score-thr", type=float, default=0.25)
